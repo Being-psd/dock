@@ -25,7 +25,7 @@ pipeline {
             }
         
                              steps {    
-                sh "git clone https://github.com/Being-psd/dock.git"
+                
                          sh "git checkout 22Q1"
                 sh "chmod -R 777 /mnt/dock/index.html "
                 sh "docker cp /mnt/dock/index.html 22Q1:/usr/local/apache2/htdocs"
