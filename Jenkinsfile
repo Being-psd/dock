@@ -17,11 +17,17 @@ pipeline {
             }
         }
         stage('deploy') { 
+            agent{
+                label{
+                    label 'built-in'
+                    customWorkspace "/mnt/psd"
+                }
+            }
                      steps{
                       
                 sh "git clone https://github.com/Being-psd/dock.git"
-                sh "chmod -R 777 /root/.jenkins/workspace/docker/dock/index.html "
-                sh "docker cp /root/.jenkins/workspace/docker/dock/index.html master:/usr/local/apache2/htdocs"
+                sh "chmod -R 777 /mnt/psd/index.html "
+                sh "docker cp /mnt/psd/index.html master:/usr/local/apache2/htdocs"
                 
           }
         }
