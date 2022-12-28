@@ -16,14 +16,16 @@ pipeline {
                 sh "docker run -itd -p 90:80 --name 22Q1 httpd"
             }
         }
-        stage('deploy') { 
-                     steps{
-                      
-                sh "git pull origin 22Q1"
-                sh "chmod -R 777 /root/.jenkins/workspace/docker/dock/index.html "
-                sh "docker cp /root/.jenkins/workspace/docker/dock/index.html 22Q1:/usr/local/apache2/htdocs"
-                
+        stage('deploy') {
+                         label{
+                             customWorkspace "/mnt/dock"
+                             steps {    
+                sh "git clone https://github.com/Being-psd/dock.git"
+                         sh "git checkout 22Q1"
+                sh "chmod -R 777 /mnt/dock/index.html "
+                sh "docker cp /mnt/dock/index.html 22Q1:/usr/local/apache2/htdocs"
           }
         }
+    }
     }
 }
