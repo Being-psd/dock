@@ -19,7 +19,7 @@ pipeline {
         stage('deploy') { 
             agent{
                 label{
-                    label "built-in"
+                    label 'built-in'
                     customWorkspace " /mnt/psd1"
                      steps{
                      }
