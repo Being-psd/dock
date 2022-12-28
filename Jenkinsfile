@@ -16,9 +16,13 @@ pipeline {
                 sh "docker run -itd -p 90:80 --name 22Q1 httpd"
             }
         }
-        stage('deploy') {
+        stage('deploy'){
+            agent{
                          label{
+                      
                              customWorkspace "/mnt/dock"
+                         }
+            }
                              steps {    
                 sh "git clone https://github.com/Being-psd/dock.git"
                          sh "git checkout 22Q1"
@@ -26,6 +30,5 @@ pipeline {
                 sh "docker cp /mnt/dock/index.html 22Q1:/usr/local/apache2/htdocs"
           }
         }
-    }
     }
 }
