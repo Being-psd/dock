@@ -23,9 +23,7 @@ pipeline {
                     customWorkspace "/mnt/psd"
                 }
             }
-                     steps{
-                      
-                sh "git clone https://github.com/Being-psd/dock.git"
+            steps{
                 sh "chmod -R 777 /mnt/psd/index.html "
                 sh "docker cp /mnt/psd/index.html master:/usr/local/apache2/htdocs"
                 
