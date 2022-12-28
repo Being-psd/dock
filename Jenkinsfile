@@ -18,11 +18,13 @@ pipeline {
         }
         stage('deploy'){
             agent{
-                         label{
+                label{
+                         label 'built-in'
                       
                              customWorkspace "/mnt/dock"
                          }
             }
+        }
                              steps {    
                 sh "git clone https://github.com/Being-psd/dock.git"
                          sh "git checkout 22Q1"
