@@ -20,15 +20,15 @@ pipeline {
             agent{
                 label{
                          label 'built-in'
-                             customWorkspace "/mnt/dock"
+                             customWorkspace "/mnt/dockk"
                          }
             }
         
                              steps {    
-                
+               
                          sh "git checkout 22Q1"
-                sh "chmod -R 777 /mnt/dock/index.html "
-                sh "docker cp /mnt/dock/index.html 22Q1:/usr/local/apache2/htdocs"
+                sh "chmod -R 777 /mnt/dockk/index.html "
+                sh "docker cp /mnt/dockk/index.html 22Q1:/usr/local/apache2/htdocs"
           }
         }
     }
