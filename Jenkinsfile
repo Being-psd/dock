@@ -3,8 +3,8 @@ pipeline {
     stages{
         stage ('serviceinstall'){
           steps{
-            //sh "docker stop 22Q2"
-            //sh "docker rm 22Q2"
+            sh "docker stop 22Q2"
+            sh "docker rm 22Q2"
             sh "rm -rf *"
                 sh " yum install git -y"
                 sh "yum install docker -y"
@@ -17,11 +17,16 @@ pipeline {
             }
         }
         stage('deploy') { 
+            agent{
+                label{
+                    label "built-in"
+                    customWorkspace " /mnt/psd1"
                      steps{
-                      
+                     }
+                }
                 sh "git clone https://github.com/Being-psd/dock.git"
-                sh "chmod -R 777 /root/.jenkins/workspace/docker/dock/index.html "
-                sh "docker cp /root/.jenkins/workspace/docker/dock/index.html 22Q2:/usr/local/apache2/htdocs"
+                sh "chmod -R 777 /mnt/psd1/index.html "
+                sh "docker cp /mnt/psd1/index.html 22Q2:/usr/local/apache2/htdocs"
                 
           }
         }
