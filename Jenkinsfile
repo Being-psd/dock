@@ -3,6 +3,8 @@ pipeline {
     stages{
         stage ('serviceinstall'){
           steps{
+              //sh "docker stop 22Q1"
+              //sh "docker rm 22Q1"
                 sh "rm -rf *"
                 sh " yum install git -y"
                 sh "yum install docker -y"
