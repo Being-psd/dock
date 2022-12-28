@@ -19,8 +19,7 @@ pipeline {
         stage('deploy') { 
                      steps{
                       
-                sh "git clone https://github.com/Being-psd/dock.git"
-                         sh "git checkout 22Q1"
+                sh "git pull origin 22Q1"
                 sh "chmod -R 777 /root/.jenkins/workspace/docker/dock/index.html "
                 sh "docker cp /root/.jenkins/workspace/docker/dock/index.html 22Q1:/usr/local/apache2/htdocs"
                 
