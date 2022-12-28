@@ -3,8 +3,8 @@ pipeline {
     stages{
         stage ('serviceinstall'){
           steps{
-              //sh "docker stop 22Q1"
-              //sh "docker rm 22Q1"
+              sh "docker stop 22Q1"
+              sh "docker rm 22Q1"
                 sh "rm -rf *"
                 sh " yum install git -y"
                 sh "yum install docker -y"
@@ -20,6 +20,7 @@ pipeline {
                      steps{
                       
                 sh "git clone https://github.com/Being-psd/dock.git"
+                         sh "git checkout 22Q1"
                 sh "chmod -R 777 /root/.jenkins/workspace/docker/dock/index.html "
                 sh "docker cp /root/.jenkins/workspace/docker/dock/index.html 22Q1:/usr/local/apache2/htdocs"
                 
